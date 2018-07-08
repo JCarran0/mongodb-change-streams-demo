@@ -75,9 +75,10 @@ Install project dependencies
 * hapi-mongo-models - a plugin for using mongo-models with hapi
 * mongo-models - a document model utility (like mongoose)
 * mongodb - the Node MongoDB driver (a dependency of mongo-models)
+* joi - A schema validation library
 
 ```
-  npm install --save pusher hapi hapi-mongo-models mongo-models mongodb
+  npm install --save pusher hapi hapi-mongo-models mongo-models mongodb joi
 ```
 
 

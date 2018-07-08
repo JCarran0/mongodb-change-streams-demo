@@ -23,6 +23,7 @@
   "dependencies": {
     "hapi": "^17.5.2",
     "hapi-mongo-models": "^7.1.0",
+    "joi": "^13.4.0",
     "mongo-models": "^2.0.3",
     "mongodb": "^3.1.1",
     "pusher": "^2.0.1"
