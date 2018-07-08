@@ -3,10 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JCarran0/mongodb-change-streams-demo.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^17.5.2",
+    "hapi-mongo-models": "^7.1.0",
+    "mongo-models": "^2.0.3",
+    "mongodb": "^3.1.1",
+    "pusher": "^2.0.1"
+  }
 }
