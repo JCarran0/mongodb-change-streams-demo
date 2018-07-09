@@ -21,6 +21,7 @@
   "author": "JCarrano0",
   "license": "ISC",
   "dependencies": {
+    "assert": "^1.4.1",
     "dotenv": "^6.0.0",
     "hapi": "^17.5.2",
     "hapi-mongo-models": "^7.1.0",
