@@ -6,7 +6,10 @@ const Hapi = require("hapi");
 // Create a server with a host and port
 const server = Hapi.server({
   host: "localhost",
-  port: 8000
+  port: 8000,
+  routes: {
+    cors: true
+  }
 });
 
 // Start the server
