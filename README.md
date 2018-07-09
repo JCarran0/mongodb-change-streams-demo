@@ -183,11 +183,11 @@ const routesPlugin = {
       path: '/new',
       handler: function (request, h) {
         const {
-          description
+          task
         } = request.payload;
 
         try {
-          await Task.create(description);
+          await Task.create(task);
           h.response('success');
         } catch (err) {
           console.error(err);
@@ -360,7 +360,7 @@ const pusherPlugin = {
       console.log(change);
 
       // Whenever a new task is inserted, send a message with an "insert" event
-      // that has the inserted task ID and description
+      // that has the inserted task ID and description      
       if (change.operationType === "insert") {
         const task = change.fullDocument;
         pusher.trigger(channel, "inserted", {
