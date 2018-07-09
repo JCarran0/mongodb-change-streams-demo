@@ -11,11 +11,11 @@ const routesPlugin = {
       path: '/new',
       handler: async function (request, h) {
         const {
-          description
+          task
         } = request.payload;
 
         try {
-          await Task.create(description);
+          await Task.create(task);
           return 'success';
         } catch (err) {
           console.error(err);

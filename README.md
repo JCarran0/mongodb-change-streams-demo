@@ -183,11 +183,11 @@ const routesPlugin = {
       path: '/new',
       handler: function (request, h) {
         const {
-          description
+          task
         } = request.payload;
 
         try {
-          await Task.create(description);
+          await Task.create(task);
           h.response('success');
         } catch (err) {
           console.error(err);
@@ -332,23 +332,13 @@ pusher.js
 ```js
 "use strict";
 
-const Pusher = require("pusher");
 const assert = require("assert");
-
-const pusher = new Pusher({
-  appId: process.env.PUSHER_APP_ID,
-  key: process.env.PUSHER_APP_KEY,
-  secret: process.env.PUSHER_APP_SECRET,
-  cluster: process.env.PUSHER_APP_CLUSTER,
-  encrypted: true
-});
 
 const channel = "tasks";
 
 const pusherPlugin = {
   name: "pusherPlugin",
   register: async function(server) {
-
     // Get the DB from the hapi-mongo-models plugin
     const HapiMongoModelsPlugin = server.plugins["hapi-mongo-models"];
     const db = HapiMongoModelsPlugin["mongo-models"].dbs.default;
@@ -360,7 +350,7 @@ const pusherPlugin = {
       console.log(change);
 
       // Whenever a new task is inserted, send a message with an "insert" event
-      // that has the inserted task ID and description
+      // that has the inserted task ID and task description
       if (change.operationType === "insert") {
         const task = change.fullDocument;
         pusher.trigger(channel, "inserted", {
@@ -369,6 +359,8 @@ const pusherPlugin = {
         });
       }
 
+      // When a task is deleted, send a message with a "delete" event and the deleted
+      // task's ID
       if (change.operationType === "delete") {
         pusher.trigger(channel, "deleted", change.documentKey._id);
       }

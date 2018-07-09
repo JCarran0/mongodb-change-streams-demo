@@ -4,14 +4,14 @@ const MongoModels = require('mongo-models');
 
 const schema = Joi.object({
   _id: Joi.object(),
-  description: Joi.string()
+  task: Joi.string()
 });
 
 class Task extends MongoModels {
-  static create(description) {
+  static create(task) {
 
     const document = new Task({
-      description
+      task
     });
 
     return this.insertOne(document);
@@ -19,8 +19,8 @@ class Task extends MongoModels {
 
   static remove(taskId) {
 
-    return this.remove({
-      _id: taskId
+    return this.deleteOne({
+      _id: MongoModels.ObjectId(taskId)
     });
   }
 }
