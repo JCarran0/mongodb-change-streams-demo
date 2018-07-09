@@ -332,13 +332,23 @@ pusher.js
 ```js
 "use strict";
 
+const Pusher = require("pusher");
 const assert = require("assert");
+
+const pusher = new Pusher({
+  appId: process.env.PUSHER_APP_ID,
+  key: process.env.PUSHER_APP_KEY,
+  secret: process.env.PUSHER_APP_SECRET,
+  cluster: process.env.PUSHER_APP_CLUSTER,
+  encrypted: true
+});
 
 const channel = "tasks";
 
 const pusherPlugin = {
   name: "pusherPlugin",
   register: async function(server) {
+
     // Get the DB from the hapi-mongo-models plugin
     const HapiMongoModelsPlugin = server.plugins["hapi-mongo-models"];
     const db = HapiMongoModelsPlugin["mongo-models"].dbs.default;
@@ -355,12 +365,10 @@ const pusherPlugin = {
         const task = change.fullDocument;
         pusher.trigger(channel, "inserted", {
           id: task._id,
-          description: task.description
+          task: task.task
         });
       }
 
-      // When a task is deleted, send a message with a "delete" event and the deleted
-      // task's ID
       if (change.operationType === "delete") {
         pusher.trigger(channel, "deleted", change.documentKey._id);
       }
