@@ -5,7 +5,7 @@ const modelsPlugin = {
     options: {
     mongodb: {
       connection: {
-        uri: 'mongodb://localhost:27017/',
+        uri: process.env.DB_URI,
         db: process.env.DB_NAME
       },
       options: {
