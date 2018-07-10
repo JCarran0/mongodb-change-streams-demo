@@ -3,7 +3,6 @@
 require('dotenv').load(); // Loads .env vars into process.env
 const Hapi = require("hapi");
 
-// Create a server with a host and port
 // process.env.PORT lets the port be set by Heroku, 
 // where our demo api is deployed
 const server = Hapi.server({
