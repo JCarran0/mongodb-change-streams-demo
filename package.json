@@ -2,13 +2,14 @@
   "name": "mongodb-hapi-change-streams-demo",
   "version": "1.0.0",
   "description": "A real-time database tutorial using MongoDB change streams",
-  "main": "index.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/JCarran0/mongodb-change-streams-demo.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [
     "mongodb",
