@@ -7,7 +7,6 @@ const Hapi = require("hapi");
 // process.env.PORT lets the port be set by Heroku, 
 // where our demo api is deployed
 const server = Hapi.server({
-  host: "localhost",
   port: process.env.PORT || 8000,
   routes: {
     cors: true
